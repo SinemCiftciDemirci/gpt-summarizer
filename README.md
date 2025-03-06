@@ -1,60 +1,96 @@
-##GPT-Summarizer
-This repository provides a script to generate an extractive summary of a given text file using OpenAI’s GPT model (configured to use GPT-4 by default). The script prompts you to select a .txt file and then produces a summary divided into three sections in Turkish: Introduction (Giriş), Development (Gelişme), and Conclusion (Sonuç).
+# 🚀 GPT-Summarizer
 
-##Project Structure
+**GPT-Summarizer** is a Python script designed to generate an **extractive summary** of text files using OpenAI's GPT-4 model. It specifically generates summaries in Turkish, structured into three clearly defined sections:
 
+- 📖 **Introduction (Giriş)**
+- ⚙️ **Development (Gelişme)**
+- ✅ **Conclusion (Sonuç)**
+
+## 📂 Project Structure
+
+```bash
 GPT-SUMMARIZER/
-│── config_loader.py
-│── config.txt
-│── gpt_summarizer.py
+├── config_loader.py
+├── config.txt
+├── gpt_summarizer.py
 └── README.md
+```
 
-config_loader.py
-Loads the OpenAI API key from config.txt and configures CUDA/CPU usage.
+- **`config_loader.py`**  
+  ⚙️ Loads OpenAI API keys from `config.txt` and manages CUDA/CPU settings.
 
-config.txt
-Contains your OpenAI API key and any other configuration needed. An example key entry might look like:
+- **`config.txt`**  
+  🔑 Stores your OpenAI API key:
+  ```
+  OPENAI_API_KEY="your_openai_api_key"
+  ```
+  > 🚨 **Note:** Do **NOT** share your actual API key publicly.
 
-OPENAI_API_KEY= "your_openai_api_key"
+- **`gpt_summarizer.py`**  
+  📝 Core script to summarize text files:
 
-gpt_summarizer.py
-The main script that uses the OpenAI API to generate an extractive summary. It:
+  1. Loads the API key from `config_loader.py`.
+  2. Opens a file dialog to choose a `.txt` file.
+  3. Generates a fairy-tale style summary using GPT-4.
+  4. Saves the summary to the `gpt_summaries/` folder.
 
-1.Reads the OpenAI API key from config_loader.py.
-2.Opens a file dialog to let you choose a .txt file to summarize.
-3.Sends a prompt to GPT-4 to create a fairy-tale style summary in Turkish, broken down into three sections.
-4.Saves the resulting summary in the gpt_summaries/ folder.
+## 🔧 Requirements
 
-##Requirements
-Python 3.7+
-OpenAI Python Library (openai)
-tkinter (built into most Python distributions on Windows; on some systems you may need to install it separately)
+- 🐍 **Python 3.7+**
+- 📚 **OpenAI Python Library** (`openai`)
+- 🖥️ **tkinter** (usually pre-installed with Python)
 
-##Usage
-1.Set up your OpenAI API key
-##In config.txt, add a line like:
+Install required packages:
+
+```bash
+pip install openai
+```
+
+## ▶️ Usage
+
+### 1. Set up your OpenAI API key
+
+Edit `config.txt`:
+
+```bash
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxx
+```
 
-2.Run the script
+### 2. Run the summarizer
+
+Execute the script:
+
+```bash
 python gpt_summarizer.py
+```
 
-3.Choose a file
-A file dialog will appear. Select the .txt file you want to summarize.
+### 3. Choose your file
 
-4.Check the output
-Once processed, the summary will be saved inside the gpt_summaries/ folder (created automatically if it doesn’t exist).
-The summary file will have the same name as the original text but with a .txt extension, for example:
+Select the `.txt` file you'd like to summarize from the popup dialog.
+
+### 4. Review your summary
+
+The summarized output will be saved in:
+
+```
 gpt_summaries/your_file_summary.txt
+```
 
+> 📌 **Note:** The script automatically creates the `gpt_summaries/` directory if it does not exist.
 
-##How It Works
-The script uses GPT-4 via openai.ChatCompletion.create and a special prompt that forces the model to create an extractive summary in a fairy-tale style.
-The generated summary is then split into Introduction, Development, and Conclusion sections.
-By default, the summarized text’s length is about 1/6 of the original story.
+## 🛠️ How It Works
 
-##Troubleshooting
-If you receive an API key error, ensure your config.txt has the correct key format and matches what config_loader.py expects.
-If you encounter issues with CUDA/CPU selection, see the logs from config_loader.py. If CUDA is not available, it will fall back to CPU.
+- GPT-4 generates an extractive summary maintaining the original storyline and fairy-tale narration style.
+- The summary is segmented clearly into **Introduction**, **Development**, and **Conclusion**.
+- The final summary length is about **1/6th** of the original story length.
 
-##License
-This project is provided under an open license (MIT, Apache 2.0, or your preferred license). Feel free to modify and distribute as needed.
+## ❗ Troubleshooting
+
+- 🔑 **API Key Issues:**
+  - Ensure `config.txt` includes the correct API key.
+- 💻 **CUDA/CPU Issues:**
+  - Check logs from `config_loader.py`. If CUDA isn't available, the script will default to CPU.
+
+## 📄 License
+
+This project is provided under an open license (MIT). Feel free to modify and distribute it as needed.
